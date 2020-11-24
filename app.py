@@ -12,6 +12,9 @@ bootstrap = Bootstrap(app)
 moment = Moment(app)
 
 
+# ---------- signup goes class goes here ---------
+
+
 # ---------- db Model probably goes here ---------
 
 
@@ -21,7 +24,7 @@ def page_not_found(e):
 
 @app.route('/')
 def signup():
-	return 'signup coming soon'
+	return render_template('signup.html')
 
 @app.route('/db', methods = ['GET', 'POST'])
 def index():
