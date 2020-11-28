@@ -22,7 +22,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/assignment9/ingredients">Home</a></li>
+                <li><a href="{{ url_for('app.index') }}">Home</a></li>
+                <li><a href="{{ url_for('app.profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                <li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
             </ul>
         </div>
     </div>
