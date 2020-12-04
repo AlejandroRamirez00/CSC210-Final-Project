@@ -10,8 +10,8 @@
 
 <div class="column is-4 is-offset-4">
     <h3 class="title">Sign Up</h3>
-    <div class="box">
-        <form method="POST" action="/signup">
+    <!-- <div class="box">
+        <form method="POST" action="/register">
             <div class="field">
                 <div class="control">
                     <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
@@ -32,7 +32,10 @@
 
             <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
         </form>
-    </div>
+    </div> -->
+
+    {{ wtf.quick_form(form) }}
+
 </div>
 
 {% endblock %}
