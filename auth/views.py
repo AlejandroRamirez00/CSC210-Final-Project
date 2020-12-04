@@ -67,7 +67,7 @@ def signup_post():
     return redirect(url_for('auth.login'))
 """
 
-"""
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -81,9 +81,9 @@ def login():
             return redirect(next)
         flash('Invalid email or password.')
     return render_template('login.html', form=form)
-"""
 
-@auth.route('/login', methods=['GET', 'POST'])
+
+"""@auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -93,14 +93,14 @@ def login():
 
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
-    """
+    
         if not user or not check_password_hash(user.password, password):
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
-            """
+            
 
     # if the above check passes, then we know the user has the right credentials
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form)"""
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
