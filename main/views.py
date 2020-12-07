@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from . import main
 from .. import db
 from ..models import User, Achievement
-from .forms import AchievementForm
+from .forms import AchievementForm, EditAchievementForm
 
 #@main.route('/')
 #def signup():
@@ -34,20 +34,29 @@ def delete(id):
     except:
         return "There was a problem deleting the achievement"
 
+@login_required
 @main.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
-    achievement_to_update = Achievement.query.get_or_404(id)
+    achievement = Achievement.query.get_or_404(id)
+    form = EditAchievementForm(achievement=achievement)
 
-    if request.method == 'POST':
-        achievement_to_update.achievement = request.form['achievement']
-
-        try:
+    if form.validate_on_submit():
+        if form.submit.data:
+            achievement.achievement = form.achievement.data
+            achievement.progress = form.progress.data
+            achievement.isComplete = form.isComplete.data
+            db.session.add(achievement)
             db.session.commit()
-            return redirect('/')
-        except:
-            return 'There was a problem updating the achievement'
-    else:
-        return render_template('update.html', achievement_to_update=achievement_to_update)
+            flash('Achievement updated.')
+            return redirect(url_for('.index'))
+        else:
+            return redirect(url_for('.index'))
+
+    form.achievement.data = achievement.achievement
+    form.progress.data = achievement.progress
+    form.isComplete.data = achievement.isComplete
+
+    return render_template('update.html', form=form)
 
 @login_required
 @main.route('/add', methods=['GET', 'POST'])

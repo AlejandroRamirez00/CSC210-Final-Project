@@ -11,3 +11,10 @@ class AchievementForm(FlaskForm):
     progress = StringField('Progress')
     submit = SubmitField('Add!')
 
+class EditAchievementForm(FlaskForm):
+    achievement = StringField('Add a new achievement:', validators=[DataRequired()])
+    isComplete = BooleanField('Completed?')
+    progress = StringField('Progress')
+    submit = SubmitField('Update!')
+    cancel = SubmitField('Cancel')
+
