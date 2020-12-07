@@ -19,13 +19,14 @@
 
 			{% if not achievement.isComplete %}
 
-				<li class="post">
-					<div class="post-content">
+				<ul class="post">
+					<li class="post-content">
 						<div>{{ achievement.achievement }}</div>
 						<div>{{ achievement.progress }}</a></div>
 						<div>{{ achievement.isComplete }}</div>
-					</div>
-				</li>
+						<div><a class = "btn btn-sm btn-outline-secondary" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{achievement.id}}">Delete</a></div>
+					</li>
+				</ul>
 
 			{% endif %}
 
@@ -39,13 +40,14 @@
 
 		{% if achievement.isComplete %}
 
-			<li class="post">
-				<div class="post-content">
+			<ul class="post">
+				<li class="post-content">
 					<div>{{ achievement.achievement }}</div>
 					<div>{{ achievement.progress }}</a></div>
 					<div>{{ achievement.isComplete }}</div>
-				</div>
-			</li>
+					<div><a class = "btn btn-sm btn-outline-secondary" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{achievement.id}}">Delete</a></div>
+				</li>
+			</ul>
 
 		{% endif %}
 
