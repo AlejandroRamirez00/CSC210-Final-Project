@@ -15,15 +15,15 @@
 	<h1>Achievements to Complete</h1>
 	
 		<!-- db list goes here -->
-		{% for achieve in achievements %}
+		{% for achievement in achievements %}
 
-			{% if not achieve.isComplete %}
+			{% if not achievement.isComplete %}
 
 				<li class="post">
 					<div class="post-content">
-						<div> { achieve.achievement }}</div>
-						<div>{{ achieve.progress }}</a></div>
-						<div>{{ achieve.isComplete }}</div>
+						<div>{{ achievement.achievement }}</div>
+						<div>{{ achievement.progress }}</a></div>
+						<div>{{ achievement.isComplete }}</div>
 					</div>
 				</li>
 
@@ -35,15 +35,15 @@
 
 	<h1>Achievements Completed</h1>
 
-		{% for achieve in achievements %}
+		{% for achievement in achievements %}
 
-		{% if achieve.isComplete %}
+		{% if achievement.isComplete %}
 
 			<li class="post">
 				<div class="post-content">
-					<div> { achieve.achievement }}</div>
-					<div>{{ achieve.progress }}</a></div>
-					<div>{{ achieve.isComplete }}</div>
+					<div>{{ achievement.achievement }}</div>
+					<div>{{ achievement.progress }}</a></div>
+					<div>{{ achievement.isComplete }}</div>
 				</div>
 			</li>
 
