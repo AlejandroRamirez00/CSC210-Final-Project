@@ -5,9 +5,9 @@ from .. import db
 from ..models import User, Achievement
 from .forms import AchievementForm
 
-@main.route('/')
-def signup():
-	return render_template('signup.html')
+#@main.route('/')
+#def signup():
+#	return render_template('signup.html')
 
 @main.route('/db', methods = ['GET', 'POST'])
 def index():
@@ -66,4 +66,4 @@ def achievements():
             return 'There was an error adding an achievement'    
     else:
         achieve = Achievement.query.order_by(Achievement.date_created)
-        return render_template('index.html', form=form, achieve=achieve)
+        return render_template('new.html', form=form, achieve=achieve)

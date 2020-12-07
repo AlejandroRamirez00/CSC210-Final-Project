@@ -7,5 +7,7 @@ from wtforms import ValidationError
 
 class AchievementForm(FlaskForm):
     achievement = StringField('Add a new achievement:', validators=[DataRequired()])
+    isComplete = BooleanField('Completed?')
+    progress = StringField('Progress')
     submit = SubmitField('Add!')
 

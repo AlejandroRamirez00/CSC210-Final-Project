@@ -5,17 +5,22 @@
 
 {% block page_content %}
 <div>
+	{% if current_user.is_authenticated %}
+		<div class = "text-right">
+			<a class = "btn btn-primary" href="{{ url_for('main.achievements') }}">Add Achievement</a>
+		</div>
+	{% endif %}
 	<!--Add new Button-->
 
 	<h1>Achievements to Complete</h1>
 
 	<!-- db list goes here -->
 
-	<ul>
+	<!-- <ul>
 		{% for achievement in achieve %}
 		   <li>{{ achievement.achievement }} <a class = "btn btn-sm btn-outline-secondary" href="/update/{{ingredient.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{ingredient.id}}">Delete</a> </li>
 		{%- endfor %}
-		</ul>
+	</ul> -->
 
 	<br>	<br>	<br>	<br>
 
