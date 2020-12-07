@@ -3,6 +3,11 @@
 
 {% block title %} Achievement Tracker {% endblock %}
 
+{%- block styles %}
+{{ super() }}
+<link rel= "stylesheet" href= "{{ url_for('static',filename='styles.css') }}">
+{%- endblock styles %}
+
 {% block page_content %}
 <div>
 	{% if current_user.is_authenticated %}
@@ -12,21 +17,30 @@
 	{% endif %}
 	<!--Add new Button-->
 
-	<h1>Achievements to Complete</h1>
+	<h1>In Progress</h1>
 	
 		<!-- db list goes here -->
 		{% for achievement in achievements %}
 
 			{% if not achievement.isComplete %}
 
-				<ul class="post">
-					<li class="post-content">
-						<div>{{ achievement.achievement }}</div>
-						<div>{{ achievement.progress }}</a></div>
-						<div>{{ achievement.isComplete }}</div>
-						<div><a class = "btn btn-sm btn-outline-secondary" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{achievement.id}}">Delete</a></div>
-					</li>
-				</ul>
+				<table>
+
+					<tr>
+						<th>Name</th>
+						<th>Progress</th>
+						<th>Completed?</th>
+						<th>Options</th>
+					</tr>
+
+					<tr>
+						<td> {{ achievement.achievement }} </td>
+						<td> {{ achievement.progress }} </td>
+						<td> {{ achievement.isComplete }} </td>
+						<td><a class = "btn btn-sm btn-outline-secondary" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{achievement.id}}">Delete</a></td>
+					</tr>
+
+				</table>
 
 			{% endif %}
 
@@ -34,26 +48,35 @@
 
 	<br>	<br>	<br>	<br>
 
-	<h1>Achievements Completed</h1>
+	<!-- other db list goes here -->
+	<h1>Completed Achievements</h1>
 
 		{% for achievement in achievements %}
 
-		{% if achievement.isComplete %}
+			{% if achievement.isComplete %}
 
-			<ul class="post">
-				<li class="post-content">
-					<div>{{ achievement.achievement }}</div>
-					<div>{{ achievement.progress }}</a></div>
-					<div>{{ achievement.isComplete }}</div>
-					<div><a class = "btn btn-sm btn-outline-secondary" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{achievement.id}}">Delete</a></div>
-				</li>
-			</ul>
+				<table>
 
-		{% endif %}
+					<tr>
+						<th>Name</th>
+						<th>Progress</th>
+						<th>Completed?</th>
+						<th>Options</th>
+					</tr>
 
-	{% endfor %}
+					<tr>
+						<td> {{ achievement.achievement }} </td>
+						<td> {{ achievement.progress }} </td>
+						<td> {{ achievement.isComplete }} </td>
+						<td><a class = "btn btn-sm btn-outline-secondary" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-sm btn-outline-"href="/delete/{{achievement.id}}">Delete</a></td>
+					</tr>
 
-	<!-- other db list goes here -->
+				</table>
+
+			{% endif %}
+
+		{% endfor %}
+
 
 </div>
 {% endblock %}
