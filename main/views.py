@@ -9,12 +9,12 @@ from .forms import AchievementForm
 #def signup():
 #	return render_template('signup.html')
 
-@main.route('/db', methods = ['GET', 'POST'])
-def index():
+#@main.route('/db', methods = ['GET', 'POST'])
+#def index():
 
 	# ----- more db stuff probably goes here ------
 
-	return render_template('index.html')
+#	return render_template('index.html')
 
 @main.route('/profile')
 @login_required
@@ -50,20 +50,21 @@ def update(id):
         return render_template('update.html', achievement_to_update=achievement_to_update)
 
 @login_required
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/add', methods=['GET', 'POST'])
 def achievements():
     achievement = None
     form = AchievementForm()
+    if form.validate_on_submit():
+        achievement = Achievement(achievement=form.achievement.data,
+                                  progress=form.progress.data,
+                                  isComplete=form.isComplete.data)
+        db.session.add(achievement)
+        db.session.commit()
+        return redirect(url_for('.index'))
 
-    if request.method == "POST":
-        achievement = form.achievement.data
-        new_achievement = Achievement(achievement=achievement)
-        try:
-            db.session.add(new_achievement)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'There was an error adding an achievement'    
-    else:
-        achieve = Achievement.query.order_by(Achievement.date_created)
-        return render_template('new.html', form=form, achieve=achieve)
+    return render_template('new.html', form=form)
+
+@main.route('/', methods=['GET', 'POST'])
+def index():
+    achieve = Achievement.query.order_by(Achievement.date_created)
+    return render_template("index.html", achieve=achieve)
