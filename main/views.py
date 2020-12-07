@@ -66,5 +66,5 @@ def achievements():
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    achieve = Achievement.query.order_by(Achievement.date_created)
-    return render_template("index.html", achieve=achieve)
+    achievements = Achievement.query.order_by(Achievement.date_created)
+    return render_template("index.html", achievements=achievements)
