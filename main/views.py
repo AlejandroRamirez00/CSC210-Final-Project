@@ -16,10 +16,15 @@ from .forms import AchievementForm, EditAchievementForm
 
 #	return render_template('index.html')
 
-@main.route('/profile')
 @login_required
+@main.route('/profile')
 def profile():
-	return render_template('profile.html', name=current_user.name)
+    achievement = Achievement.query.order_by(Achievement.date_created).count()
+    completed = Achievement.query.filter(Achievement.isComplete).count()
+
+    inProgress = achievement - completed 
+
+    return render_template('profile.html', name=current_user.name, achievement=achievement, completed=completed, inProgress=inProgress)
 
 # ------ CRUD functions ------
 @main.route('/delete/<int:id>')
