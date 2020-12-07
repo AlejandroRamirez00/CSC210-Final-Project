@@ -4,13 +4,14 @@ from flask_login import UserMixin, AnonymousUserMixin
 from . import db, login_manager
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from werkzeug.security import generate_password_hash, check_password_hash
+import hashlib
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
+    #password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
     posts = db.relationship('Achievement', backref='author', lazy='dynamic')
     password_hash = db.Column(db.String(128))
@@ -21,7 +22,12 @@ class User(UserMixin, db.Model):
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
         return s.dumps({'confirm': self.id}).decode('utf-8')
+    
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
 
+    @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)
 

@@ -74,7 +74,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data.lower()).first()
         if user is not None and user.verify_password(form.password.data):
-            login_user(user, form.remember_me.data)
+            login_user(user)
             next = request.args.get('next')
             if next is None or not next.startswith('/'):
                 next = url_for('main.index')
@@ -83,7 +83,8 @@ def login():
     return render_template('login.html', form=form)
 
 
-"""@auth.route('/login', methods=['GET', 'POST'])
+"""
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -100,7 +101,28 @@ def login():
             
 
     # if the above check passes, then we know the user has the right credentials
-    return render_template('login.html', form=form)"""
+    return render_template('login.html', form=form)
+"""
+'''
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    email = form.email.data
+    password = form.password.data
+    #remember = True if request.form.get('remember') else False
+
+    user = User.query.filter_by(email=email).first()
+
+    # check if the user actually exists
+    # take the user-supplied password, hash it, and compare it to the hashed password in the database
+    if not user or not user.verify_password(form.password.data):
+        flash('Please check your login details and try again.')
+        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
+
+    # if the above check passes, then we know the user has the right credentials
+    return redirect(url_for('index.html'))
+    #return render_template('template/login.html', form=form)
+    '''
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -111,7 +133,6 @@ def register():
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()
-        token = user.generate_confirmation_token()
         return redirect(url_for('auth.login'))
     return render_template('signup.html', form=form)
 
