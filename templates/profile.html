@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-<!-- needs bootstrap css-->
-{% block content %}
-<h1>
-  Welcome, {{ name }}!
-</h1>
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Achievement Tracker{% endblock %}
+
+{% block page_content %}
+  <h1>Welcome, {{ name }}!</h1>
+
 {% endblock %}

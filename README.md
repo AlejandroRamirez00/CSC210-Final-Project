@@ -1,6 +1,16 @@
-# CSC210-Final-Project
+# CSC210 Final Project - Achievement Tracker
 
-Austin Ratliff, Leah Goodwin, Alejandro Ramirez
+Leah Goodwin, Alejandro Ramirez, Austin Ratliff
 
-To run, 
-install requirements.txt amd export FLASK_APP=flasky.py
+## To Run:
+Install requirements.txt and export FLASK_APP=flasky.py
+
+## To Do:
+
+- [x]  Implement basic CRUD
+- [x]  Add basic styles to achievement list 
+- [ ]  Add features to profile page
+- [ ]  Display achievement
+- [ ]  Add email confirmation
+- [ ]  Add ability to change email
+- [ ]  Add ability to change password
