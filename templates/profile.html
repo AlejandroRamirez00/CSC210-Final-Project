@@ -9,17 +9,22 @@
 {%- endblock styles %}
 
 {% block page_content %}
-  <h1>Welcome, {{ name }}!</h1>
-  
-    <hr>
+<div class="row">
+	<div class="col md-12">
+		<div class="jumbotron p-3">
+			<h1>Welcome, {{ name }}!</h1>
+			  
+			<hr>
 
-    <p>Completed Achievements: {{ completed }}</p>
-    <p>In Progress Achievements: {{ inProgress }} </p>
-    <p>Total Achievements: {{ achievement }}</p>
+			<p>Completed Achievements: {{ completed }}</p>
+			<p>In Progress Achievements: {{ inProgress }} </p>
+			<p>Total Achievements: {{ achievement }}</p>
 
-    <br> <br>
+			<br> <br>
 
-    <a class="btn btn-primary" href="{{ url_for('auth.change_password') }}">Change password</a>
-    <a class="btn btn-primary" href="{{ url_for('auth.change_email') }}">Change email</a>
-
+		    <a class="btn btn-primary" href="{{ url_for('auth.change_password') }}">Change password</a>
+			<a class="btn btn-primary" href="{{ url_for('auth.change_email') }}">Change email</a>
+		</div>
+	</div>
+</div>
 {% endblock %}

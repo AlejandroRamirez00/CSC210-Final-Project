@@ -4,9 +4,15 @@
 {% block title %} Achievement Tracker {% endblock %}
 
 {% block page_content %}
-<div>
+<div class="row">
+	<div class="col md-12">
+		<div class="jumbotron p-3">
+			<div>
 
-    {{ wtf.quick_form(form) }}
+    			{{ wtf.quick_form(form) }}
 
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
