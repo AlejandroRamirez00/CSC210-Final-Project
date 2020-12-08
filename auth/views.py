@@ -158,7 +158,9 @@ def change_email():
     if form.validate_on_submit():
         if current_user.verify_password(form.password.data):
             new_email = form.email.data.lower()
-            current_user.change_email()
+            if current_user.change_email(new_email):
+                db.session.commit()
+                flash('Your email address has been updated.')
             return redirect(url_for('main.index'))
         else:
             flash('Invalid email or password.')
