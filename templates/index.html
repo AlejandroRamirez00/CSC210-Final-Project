@@ -10,15 +10,19 @@
 
 {% block page_content %}
 <div>
+
 	{% if current_user.is_authenticated %}
 		<div class = "text-right">
 			<a class = "btn btn-primary" href="{{ url_for('main.achievements') }}">Add Achievement</a>
 		</div>
 	{% endif %}
 
+	<br>
+
 	<div class="row">
 		<div class="col md-12">
 			<div class="jumbotron p-3">
+
 				<h2>In <b>Progress </b></h2>
 	
 					<table class="table table-hover table-dark">
