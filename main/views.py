@@ -71,7 +71,8 @@ def achievements():
     if form.validate_on_submit():
         achievement = Achievement(achievement=form.achievement.data,
                                   progress=form.progress.data,
-                                  isComplete=form.isComplete.data)
+                                  isComplete=form.isComplete.data,
+                                  author=current_user._get_current_object())
         db.session.add(achievement)
         db.session.commit()
         return redirect(url_for('.index'))
@@ -81,4 +82,6 @@ def achievements():
 @main.route('/', methods=['GET', 'POST'])
 def index():
     achievements = Achievement.query.order_by(Achievement.date_created)
-    return render_template("index.html", achievements=achievements)
+    user = User.query.order_by(User.id)
+
+    return render_template("index.html", achievements=achievements, user=user)

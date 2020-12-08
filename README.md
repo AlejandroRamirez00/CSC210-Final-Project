@@ -12,5 +12,5 @@ Install requirements.txt and export FLASK_APP=flasky.py
 - [ ]  Add features to profile page
 - [ ]  Display achievement author
 - [ ]  Add email confirmation
-- [ ]  Add ability to change email
-- [ ]  Add ability to change password
+- [x]  Add ability to change email
+- [x]  Add ability to change password

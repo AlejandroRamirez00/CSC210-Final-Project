@@ -23,12 +23,13 @@
 		<div class="col md-12">
 			<div class="jumbotron p-3">
 
-				<h2>In <b>Progress </b></h2>
+				<h2>In <b>Progress</b></h2>
 	
 					<table class="table table-hover table-dark">
 
 						<tr>
-							<th>Name</th>
+							<th>Username</th>
+							<th>Achievement</th>
 							<th>Progress</th>
 							<th>Completed?</th>
 							
@@ -42,9 +43,10 @@
 							{% if not achievement.isComplete %}
 
 								<tr>
-									<td> {{ achievement.achievement }} </td>
-									<td> {{ achievement.progress }} </td>
-									<td> {{ achievement.isComplete }} </td>
+									<td>{{ achievement.author }}</td>
+									<td>{{ achievement.achievement }}</td>
+									<td>{{ achievement.progress }}</td>
+									<td>{{ achievement.isComplete }}</td>
 
 									{% if current_user.is_authenticated %}
 										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
@@ -61,12 +63,13 @@
 				<br>	<br>	<br>	<br>
 
 				<!-- other db list goes here -->
-				<h2>Completed <b>Achievements </b></h2>
+				<h2>Completed <b>Achievements</b></h2>
 
 					<table class="table table-hover table-dark">
 
 						<tr>
-							<th>Name</th>
+							<th>Username</th>
+							<th>Achievement</th>
 							<th>Progress</th>
 							<th>Completed?</th>
 
@@ -81,9 +84,10 @@
 							{% if achievement.isComplete %}
 				
 								<tr>
-									<td> {{ achievement.achievement }} </td>
-									<td> {{ achievement.progress }} </td>
-									<td> {{ achievement.isComplete }} </td>
+									<td>{{ achievement.author }}</td>
+									<td>{{ achievement.achievement }}</td>
+									<td>{{ achievement.progress }}</td>
+									<td>{{ achievement.isComplete }}</td>
 
 									{% if current_user.is_authenticated %}
 										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>

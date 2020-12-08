@@ -11,13 +11,13 @@ class User(UserMixin, db.Model):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
     email = db.Column(db.String(100), unique=True)
-    #password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
-    posts = db.relationship('Achievement', backref='author', lazy='dynamic')
     password_hash = db.Column(db.String(128))
+    #achievements = db.relationship('Achievement', backref='author', lazy='dynamic')
 
     def __repr__(self):
-        return '<User %r>' % self.name
+        #return '<User %r>' % self.name
+        return self.name
 
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
@@ -34,6 +34,24 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    # def change_email(self):
+    #     s = Serializer(current_app.config['SECRET_KEY'])
+    #     try:
+    #         data = s.loads(token.encode('utf-8'))
+    #     except:
+    #         return False
+    #     if data.get('change_email') != self.id:
+    #         return False
+    #     new_email = data.get('new_email')
+    #     if new_email is None:
+    #         return False
+    #     if self.query.filter_by(email=new_email).first() is not None:
+    #         return False
+    #     self.email = new_email
+    #     self.avatar_hash = self.gravatar_hash()
+    #     db.session.add(self)
+    #     return True
+
 class Achievement(db.Model):
     __tablename__ = 'achievement'
     __table_args__ = {'extend_existing': True}
@@ -43,6 +61,7 @@ class Achievement(db.Model):
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     isComplete = db.Column(db.Boolean(), unique=False, default=True)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    author = db.relationship('User', backref='author', foreign_keys=[author_id])
 
     def __repr__(self):
         return '<Achievement %r>' % self.id   
