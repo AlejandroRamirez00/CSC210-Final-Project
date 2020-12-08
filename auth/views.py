@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from . import auth
 from .. import db
 from ..models import User
-from .forms import LoginForm, RegistrationForm, ChangePasswordForm
+from .forms import LoginForm, RegistrationForm, ChangePasswordForm, ChangeEmailForm
 from werkzeug.security import generate_password_hash, check_password_hash
 
 @auth.route('/')
@@ -136,8 +136,8 @@ def register():
         return redirect(url_for('auth.login'))
     return render_template('signup.html', form=form)
 
-@auth.route('/change-password', methods=['GET', 'POST'])
 @login_required
+@auth.route('/change-password', methods=['GET', 'POST'])
 def change_password():
     form = ChangePasswordForm()
     if form.validate_on_submit():
@@ -150,6 +150,18 @@ def change_password():
         else:
             flash('Invalid password.')
     return render_template("change_password.html", form=form)
+
+@login_required
+@auth.route('/change_email', methods=['GET', 'POST'])
+def change_email():
+    form = ChangeEmailForm()
+    if form.validate_on_submit():
+        if current_user.verify_password(form.password.data):
+            new_email = form.email.data.lower()
+            return redirect(url_for('main.index'))
+        else:
+            flash('Invalid email or password.')
+    return render_template("change_email.html", form=form)
 
 @auth.route('/logout')
 @login_required
