@@ -16,8 +16,8 @@ from .forms import AchievementForm, EditAchievementForm
 
 #	return render_template('index.html')
 
-@login_required
 @main.route('/profile')
+@login_required
 def profile():
     achievement = Achievement.query.order_by(Achievement.date_created).count()
     completed = Achievement.query.filter(Achievement.isComplete).count()
