@@ -15,71 +15,83 @@
 			<a class = "btn btn-primary" href="{{ url_for('main.achievements') }}">Add Achievement</a>
 		</div>
 	{% endif %}
-	<!--Add new Button-->
-
 
 	<div class="row">
 		<div class="col md-12">
 			<div class="jumbotron p-3">
 				<h2>In <b>Progress </b></h2>
 	
-				<!-- db list goes here -->
-				{% for achievement in achievements %}
+					<table class="table table-hover table-dark">
 
-				{% if not achievement.isComplete %}
+						<tr>
+							<th>Name</th>
+							<th>Progress</th>
+							<th>Completed?</th>
+							
+							{% if current_user.is_authenticated %}
+								<th>Options</th>
+							{% endif %}						
+						</tr>
 
-				<table class="table table-hover table-dark">
+						{% for achievement in achievements %}
 
-					<tr>
-						<th>Name</th>
-						<th>Progress</th>
-						<th>Completed?</th>
-						<th>Options</th>
-					</tr>
+							{% if not achievement.isComplete %}
 
-					<tr>
-						<td> {{ achievement.achievement }} </td>
-						<td> {{ achievement.progress }} </td>
-						<td> {{ achievement.isComplete }} </td>
-						<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
-					</tr>
+								<tr>
+									<td> {{ achievement.achievement }} </td>
+									<td> {{ achievement.progress }} </td>
+									<td> {{ achievement.isComplete }} </td>
 
-				</table>
+									{% if current_user.is_authenticated %}
+										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
+									{% endif %}
 
-				{% endif %}
+								</tr>
 
-				{% endfor %}
+							{% endif %}
+
+						{% endfor %}
+
+					</table>	
 
 				<br>	<br>	<br>	<br>
 
 				<!-- other db list goes here -->
 				<h2>Completed <b>Achievements </b></h2>
 
-				{% for achievement in achievements %}
+					<table class="table table-hover table-dark">
 
-				{% if achievement.isComplete %}
+						<tr>
+							<th>Name</th>
+							<th>Progress</th>
+							<th>Completed?</th>
 
-				<table class="table table-hover table-dark">
+							{% if current_user.is_authenticated %}
+								<th>Options</th>
+							{% endif %}
 
-					<tr>
-						<th>Name</th>
-						<th>Progress</th>
-						<th>Completed?</th>
-						<th>Options</th>
-					</tr>
+						</tr>
 
-					<tr>
-						<td> {{ achievement.achievement }} </td>
-						<td> {{ achievement.progress }} </td>
-						<td> {{ achievement.isComplete }} </td>
-						<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
-					</tr>
+						{% for achievement in achievements %}
 
-				</table>
+							{% if achievement.isComplete %}
+				
+								<tr>
+									<td> {{ achievement.achievement }} </td>
+									<td> {{ achievement.progress }} </td>
+									<td> {{ achievement.isComplete }} </td>
 
-				{% endif %}
+									{% if current_user.is_authenticated %}
+										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
+									{% endif %}
 
-				{% endfor %}
+								</tr>
+
+							{% endif %}
+						{% endfor %}
+
+					</table>
+
 			</div>
 		</div>
 	</div>
