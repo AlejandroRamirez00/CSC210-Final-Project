@@ -3,30 +3,37 @@
 
 {% block title %}Achievement Tracker{% endblock %}
 
-{%- block styles %}
+{% block styles %}
 {{ super() }}
-<link rel= "stylesheet" href= "{{ url_for('static',filename='styles.css') }}">
-{%- endblock styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+{% endblock styles %}
 
 {% block page_content %}
-
-<img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
 <div class="row">
+
 	<div class="col md-12">
-		<div class="jumbotron p-3">
+
+		<img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
+
+		<div class="profile-header">
+
 			<h1>Welcome, {{ name }}!</h1>
-			  
-			<hr>
+						
+				<hr>
+				
+				<p>Completed Achievements: {{ completed }}</p>
+				<p>In Progress Achievements: {{ inProgress }} </p>
+				<p>Total Achievements: {{ achievement }}</p>
 
-			<p>Completed Achievements: {{ completed }}</p>
-			<p>In Progress Achievements: {{ inProgress }} </p>
-			<p>Total Achievements: {{ achievement }}</p>
+				<br> <br>
+					
+				<a class="btn btn-primary" href="{{ url_for('auth.change_password') }}">Change password</a>
+				<a class="btn btn-primary" href="{{ url_for('auth.change_email') }}">Change email</a>
 
-			<br> <br>
-
-		    <a class="btn btn-primary" href="{{ url_for('auth.change_password') }}">Change password</a>
-			<a class="btn btn-primary" href="{{ url_for('auth.change_email') }}">Change email</a>
 		</div>
+
 	</div>
+	
 </div>
+
 {% endblock %}
