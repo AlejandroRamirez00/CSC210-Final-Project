@@ -3,10 +3,10 @@
 
 {% block title %} Achievement Tracker {% endblock %}
 
-{%- block styles %}
+{% block styles %}
 {{ super() }}
-<link rel= "stylesheet" href= "{{ url_for('static',filename='styles.css') }}">
-{%- endblock styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+{% endblock styles %}
 
 {% block page_content %}
 <div>
@@ -28,7 +28,7 @@
 					<table class="table table-hover table-dark">
 
 						<tr>
-							<th>Username</th>
+							<th>Name</th>
 							<th>Achievement</th>
 							<th>Progress</th>
 							<th>Completed?</th>
@@ -43,7 +43,7 @@
 							{% if not achievement.isComplete %}
 
 								<tr>
-									<td>{{ achievement.author }}</td>
+									<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
 									<td>{{ achievement.achievement }}</td>
 									<td>{{ achievement.progress }}</td>
 									<td>{{ achievement.isComplete }}</td>
@@ -68,7 +68,7 @@
 					<table class="table table-hover table-dark">
 
 						<tr>
-							<th>Username</th>
+							<th>User</th>
 							<th>Achievement</th>
 							<th>Progress</th>
 							<th>Completed?</th>
@@ -84,7 +84,7 @@
 							{% if achievement.isComplete %}
 				
 								<tr>
-									<td>{{ achievement.author }}</td>
+									<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
 									<td>{{ achievement.achievement }}</td>
 									<td>{{ achievement.progress }}</td>
 									<td>{{ achievement.isComplete }}</td>

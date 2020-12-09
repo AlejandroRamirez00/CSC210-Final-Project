@@ -3,6 +3,11 @@
 
 {% block title %} Achievement Tracker {% endblock %}
 
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+{% endblock styles %}
+
 {% block page_content %}
 <div class="row">
 	<div class="col md-12">

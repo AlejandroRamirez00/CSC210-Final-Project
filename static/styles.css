@@ -19,3 +19,8 @@ table
     min-height: 260px;
     margin-left: 280px;
 }
+
+.table, table, tr, td, tbody, head, tbody,tfoot 
+{
+    vertical-align: initial;
+}
