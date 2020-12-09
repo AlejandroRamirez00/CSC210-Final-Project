@@ -46,7 +46,12 @@
 									<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
 									<td>{{ achievement.achievement }}</td>
 									<td>{{ achievement.progress }}</td>
-									<td>{{ achievement.isComplete }}</td>
+
+									{% if achievement.isComplete %}
+										<td>Yes</td>
+									{% else %}
+										<td>No</td>
+									{% endif %}
 
 									{% if current_user.is_authenticated %}
 										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
@@ -87,7 +92,12 @@
 									<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
 									<td>{{ achievement.achievement }}</td>
 									<td>{{ achievement.progress }}</td>
-									<td>{{ achievement.isComplete }}</td>
+
+									{% if achievement.isComplete %}
+										<td>Yes</td>
+									{% else %}
+										<td>No</td>
+									{% endif %}
 
 									{% if current_user.is_authenticated %}
 										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
