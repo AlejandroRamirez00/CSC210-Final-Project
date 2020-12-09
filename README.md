@@ -9,8 +9,8 @@ Install requirements.txt and export FLASK_APP=flasky.py
 
 - [x]  Implement basic CRUD
 - [x]  Add basic styles to achievement list 
-- [ ]  Add features to profile page
+- [x]  Add features to profile page
 - [x]  Display achievement author
-- [ ]  Add email confirmation
+- [ ]  ~~Add email confirmation~~
 - [x]  Add ability to change email
 - [x]  Add ability to change password
