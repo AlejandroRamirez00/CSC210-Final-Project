@@ -20,7 +20,7 @@ table
     margin-left: 280px;
 }
 
-.table, table, tr, td, tbody, head, tbody,tfoot 
+.table > tbody > tr > td 
 {
     vertical-align: initial;
 }
