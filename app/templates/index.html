@@ -39,22 +39,25 @@
 
 							{% if not achievement.isComplete %}
 
-								<tr>
-									<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
-									<td>{{ achievement.achievement }}</td>
-									<td>{{ achievement.progress }}</td>
+								{% if achievement.author|string() == current_user.name|string() %}
 
-									{% if achievement.isComplete %}
-										<td>Yes</td>
-									{% else %}
-										<td>No</td>
-									{% endif %}
+									<tr>
+										<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
+										<td>{{ achievement.achievement }}</td>
+										<td>{{ achievement.progress }}</td>
 
-									{% if current_user.is_authenticated %}
-										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" href="/delete/{{achievement.id}}">Delete</a></td>
-									{% endif %}
+										{% if achievement.isComplete %}
+											<td>Yes</td>
+										{% else %}
+											<td>No</td>
+										{% endif %}
 
-								</tr>
+										{% if current_user.is_authenticated %}
+											<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" href="/delete/{{achievement.id}}">Delete</a></td>
+										{% endif %}
+									</tr>
+
+								{% endif %}
 
 							{% endif %}
 
@@ -83,25 +86,30 @@
 						{% for achievement in achievements %}
 
 							{% if achievement.isComplete %}
+
+								{% if achievement.author|string() == current_user.name|string() %}
 				
-								<tr>
-									<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
-									<td>{{ achievement.achievement }}</td>
-									<td>{{ achievement.progress }}</td>
+									<tr>
+										<td><img class="img-rounded" src="{{ achievement.author.gravatar(size=36) }}">  {{ achievement.author }}</td>
+										<td>{{ achievement.achievement }}</td>
+										<td>{{ achievement.progress }}</td>
 
-									{% if achievement.isComplete %}
-										<td>Yes</td>
-									{% else %}
-										<td>No</td>
-									{% endif %}
+										{% if achievement.isComplete %}
+											<td>Yes</td>
+										{% else %}
+											<td>No</td>
+										{% endif %}
 
-									{% if current_user.is_authenticated %}
-										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" href="/delete/{{achievement.id}}">Delete</a></td>
-									{% endif %}
+										{% if current_user.is_authenticated %}
+											<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" href="/delete/{{achievement.id}}">Delete</a></td>
+										{% endif %}
 
-								</tr>
+									</tr>
+
+								{% endif %}
 
 							{% endif %}
+
 						{% endfor %}
 
 					</table>
