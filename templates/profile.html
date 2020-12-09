@@ -9,6 +9,8 @@
 {%- endblock styles %}
 
 {% block page_content %}
+
+<img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}">
 <div class="row">
 	<div class="col md-12">
 		<div class="jumbotron p-3">

@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(1000))
     password_hash = db.Column(db.String(128))
+    avatar_hash = db.Column(db.String(32))
     #achievements = db.relationship('Achievement', backref='author', lazy='dynamic')
 
     def __repr__(self):
@@ -42,6 +43,16 @@ class User(UserMixin, db.Model):
         self.email = new_email
         db.session.add(self)
         return True
+
+    def gravatar_hash(self):
+        return hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
+
+    def gravatar(self, size=100, default='identicon', rating='g'):
+        url = 'https://secure.gravatar.com/avatar'
+        hash = self.avatar_hash or self.gravatar_hash()
+        return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
+            url=url, hash=hash, size=size, default=default, rating=rating)
+
 class Achievement(db.Model):
     __tablename__ = 'achievement'
     __table_args__ = {'extend_existing': True}
