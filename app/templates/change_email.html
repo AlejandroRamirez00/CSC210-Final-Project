@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Flasky - Change Email{% endblock %}
+{% block title %} Achievement Tracker {% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -12,14 +12,13 @@
 <div class="row">
 	<div class="col md-12">
 		<div class="jumbotron p-3">
-    		<h2>Change Your Email</h2>
+			<div class="container column is-4 is-offset-4">
+				<h2>Change Email</h2>
 
-        	<hr>
+					{{ wtf.quick_form(form) }}
 
-        	<br>
-
-        	{{ wtf.quick_form(form) }}
-        </div>
+			</div>
+		</div>
 	</div>
 </div>
 {% endblock %}

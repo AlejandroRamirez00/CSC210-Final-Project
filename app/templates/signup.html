@@ -1,51 +1,24 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %} Achievement Tracker {% endblock %}
-
-{% block page_content %}
 
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
 {% endblock styles %}
 
-<!-- signup html goes here -->
-<!-- code below is in bulma needs to be formatted to bootstrap -->
-
+{% block page_content %}
 <div class="row">
-    <div class="col md-12">
-        <div class="jumbotron p-3">
-            <div class="column is-4 is-offset-4">
-                <h2 class="title">Sign Up</h2>
-                <!-- <div class="box">
-                    <form method="POST" action="/register">
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
-                            </div>
-                        </div>
+	<div class="col md-12">
+		<div class="jumbotron p-3">
+			<div class="container column is-4 is-offset-4">
+				<h2>Signup</h2>
 
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
-                            </div>
-                        </div>
+					{{ wtf.quick_form(form) }}
 
-                        <div class="field">
-                            <div class="control">
-                                <input class="input is-large" type="password" name="password" placeholder="Password">
-                            </div>
-                        </div>
-
-                        <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
-                    </form>
-                </div> -->
-
-                {{ wtf.quick_form(form) }}
-            </div>
-        </div>
-    </div>    
+			</div>
+		</div>
+	</div>
 </div>
-
 {% endblock %}
