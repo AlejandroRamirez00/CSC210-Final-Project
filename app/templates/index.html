@@ -54,7 +54,7 @@
 									{% endif %}
 
 									{% if current_user.is_authenticated %}
-										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
+										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" href="/delete/{{achievement.id}}">Delete</a></td>
 									{% endif %}
 
 								</tr>
@@ -100,7 +100,7 @@
 									{% endif %}
 
 									{% if current_user.is_authenticated %}
-										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are You Sure To Delete ?')" href="/delete/{{achievement.id}}">Delete</a></td>
+										<td><a class = "btn btn-warning btn-xs" href="/update/{{achievement.id}}">Update</a> <a class = "btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')" href="/delete/{{achievement.id}}">Delete</a></td>
 									{% endif %}
 
 								</tr>
