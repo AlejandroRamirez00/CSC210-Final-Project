@@ -19,12 +19,23 @@ from .forms import AchievementForm, EditAchievementForm
 @login_required
 @main.route('/profile/<username>')
 def profile(username):
-    achievement = Achievement.query.order_by(Achievement.date_created).count()
-    completed = Achievement.query.filter(Achievement.isComplete).count()
-    inProgress = achievement - completed 
+    allAchievements = Achievement.query.order_by(Achievement.date_created)
     user = User.query.filter_by(name=current_user.name).first_or_404()
 
-    return render_template('profile.html', user=user, name=current_user.name, achievement=achievement, completed=completed, inProgress=inProgress)
+    userAchievements = 0
+    for i in allAchievements:
+        if str(i.author) == current_user.name:
+            userAchievements = userAchievements + 1
+
+    completed = 0
+    for i in allAchievements:
+        if str(i.author) == current_user.name:
+            if i.isComplete:
+                completed = completed + 1
+
+    inProgress = userAchievements - completed
+
+    return render_template('profile.html', user=user, name=current_user.name, userAchievements=userAchievements, completed=completed, inProgress=inProgress)
 
 # ------ CRUD functions ------
 @main.route('/delete/<int:id>')
